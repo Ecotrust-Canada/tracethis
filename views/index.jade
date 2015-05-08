@@ -1,0 +1,72 @@
+doctype html
+html
+  head
+    title TraceThis
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
+    link(rel='stylesheet', href='/stylesheets/demo.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/default.css')
+    link(rel='stylesheet', href='/stylesheets/set2.css')
+    link(rel='stylesheet', href='/stylesheets/component.css')
+  body(ng-app="traceApp", ng-controller="traceCtrl")
+    .content
+      .container
+        h1 TraceThis
+        
+        p A traceability evalation and prototyping tool. Enter the code attached to your product:
+
+        span.input.input--yoshiko
+          input#code.input__field.input__field--yoshiko.input--filled(type='text', ng-model='code')
+          label.input__label.input__label--yoshiko(for='input-10')
+            span.input__label-content.input__label-content--yoshiko(data-content="TRACE CODE") TRACE CODE
+        |  
+        qrcode(data="{{ code }}", size="150")
+
+        p
+          | Don't have a code? 
+          a(href="#" + Math.floor(Math.random()*100000)) generate one.
+
+
+      .main
+        ul.cbp_tmtimeline
+          li(ng-repeat="result in results track by $index")
+            time.cbp_tmtime(datetime='2013-04-10 18:30')
+              span {{result.date.getFullYear()}}-{{result.date.getMonth()}}-{{result.date.getDate()}}
+              span {{result.date.getHours()}}:{{result.date.getMinutes()}}
+            .cbp_tmicon.cbp_tmicon-phone
+            .cbp_tmlabel
+              h3 {{result.activity}}
+              p {{result.description}}
+
+          li.new-entry
+            time.cbp_tmtime(datetime='2013-04-10 18:30')
+
+            .cbp_tmicon.cbp_tmicon-phone
+            .cbp_tmlabel
+              p Join the value chain! Enter your product data here.
+
+              span.input.input--yoshiko
+                input.input__field.input__field--yoshiko.input--filled(type='text', ng-model='activity')
+                label.input__label.input__label--yoshiko(for='input-10')
+                  span.input__label-content.input__label-content--yoshiko(data-content="ACTIVITY") ACTIVITY
+              br
+              span.input.input--yoshiko
+                input.input__field.input__field--yoshiko.input--filled(type='text', ng-model='description')
+                label.input__label.input__label--yoshiko(for='input-10')
+                  span.input__label-content.input__label-content--yoshiko(data-content="DESCRIPTION") DESCRIPTION
+              br
+              span.input.input--yoshiko
+                button(ng-click="save()") SAVE
+
+  script(src="bower_components/json.date-extensions/json.date-extensions.min.js")
+  script.
+    JSON.useDateParser();
+  script(src="javascripts/angular.min.js")
+  script(src="bower_components/qrcode-generator/js/qrcode.js")
+  script(src="bower_components/angular-qrcode/qrcode.js")
+  script(src="javascripts/classie.js")
+  script(src="javascripts/client.js")
+
+
+
+
