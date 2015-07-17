@@ -194,11 +194,11 @@ app.controller('traceCtrl', ['$scope', '$http', function($scope, $http) {
     var hash_code = (window.location.hash + '').replace("#", "");
     
 
- navigator.geolocation.getCurrentPosition(function(p) {
+    navigator.geolocation.getCurrentPosition(function(p) {
             // success callback fn
             var c = p.coords; 
             console.log(c);
-            L.marker([c.latitude, c.longitude]).addTo(map);
+            L.circleMarker([c.latitude, c.longitude]).addTo(map);
             map.setView([c.latitude, c.longitude], 14);
             $scope.latitude = c.latitude;
             $scope.longitude = c.longitude;
@@ -209,10 +209,14 @@ app.controller('traceCtrl', ['$scope', '$http', function($scope, $http) {
       $scope.code = hash_code;
     }
 
+
+
     $http.get('/trace/' + $scope.code).
       success(function(data, status, headers, config) {
         $scope.results = data;
         window.results = data;
+        render(data);
+
       }).
       error(function(data, status, headers, config) {
 

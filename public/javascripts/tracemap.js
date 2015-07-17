@@ -10,5 +10,18 @@ L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 
 /*var drawMarkers = function*/
 
+var render = function(data){
+        var latlngs = [];
+        for (var i=0;i<data.length;i++){
+          if (data[i].latitude && data[i].longitude){
+            L.marker([data[i].latitude,data[i].longitude]).addTo(map);
+            latlngs.push([data[i].latitude,data[i].longitude]);
+          }            
+        }
+        console.log(latlngs.length)
+        if (latlngs.length >= 2){
+        	var polyline = L.polyline(latlngs).addTo(map);
+        }
+        
 
-
+}
