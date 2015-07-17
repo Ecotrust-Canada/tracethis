@@ -7,18 +7,17 @@ var mongojs = require('mongojs');
 var db = mongojs('tracethis', ['traces']);
 
 
-
 router.get('/:code', function(req, res, next) {
   db.traces.find({'code': req.params.code}, function(err, docs){
     res.send(docs);
   });
-
 });
 
 
-
-
 router.post('/:code', function(req, res, next) {
+
+  console.log(req.files);
+  res.end("File uploaded.");
 
   db.traces.save({
     code: req.params.code,
