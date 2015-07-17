@@ -3,22 +3,25 @@ var router = express.Router();
 require('json.date-extensions');
 JSON.useDateParser();
 
-var DB = {
-  '123': {
-    date: new Date(),
-    descripton: "Lorem ipsum dolor."
-  }
-};
+var mongojs = require('mongojs');
+var db = mongojs('tracethis', ['traces']);
 
-/* GET users listing. */
+
+
 router.get('/:code', function(req, res, next) {
-  res.send(DB[req.params.code] || []);
+  db.traces.find({'code': req.params.code}, function(err, docs){
+    res.send(docs);
+  });
+
 });
+
+
+
 
 router.post('/:code', function(req, res, next) {
 
-  DB[req.params.code] = DB[req.params.code] || [];
-  DB[req.params.code].push({
+  db.traces.save({
+    code: req.params.code,
     date: new Date(),
     activity: req.body.activity,
     description: req.body.description
@@ -29,5 +32,7 @@ router.post('/:code', function(req, res, next) {
   });
 
 });
+
+
 
 module.exports = router;
