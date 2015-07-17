@@ -11,10 +11,26 @@ L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 /*var drawMarkers = function*/
 
 var render = function(data){
+		var oms = new OverlappingMarkerSpiderfier(map);
+		var popup = new L.Popup();
+		oms.addListener('click', function(marker) {
+		  popup.setContent(marker.desc);
+		  popup.setLatLng(marker.getLatLng());
+		  map.openPopup(popup);
+		});
+		oms.addListener('spiderfy', function(markers) {
+		  map.closePopup();
+		});
+
         var latlngs = [];
         for (var i=0;i<data.length;i++){
           if (data[i].latitude && data[i].longitude){
-            L.marker([data[i].latitude,data[i].longitude]).addTo(map);
+          	var datum = data[i]
+          	var loc = new L.LatLng(datum.latitude, datum.longitude);
+			var marker = new L.Marker(loc);
+			marker.desc = datum.activity +'<br>'+ datum.description;
+			map.addLayer(marker);
+			oms.addMarker(marker);
             latlngs.push([data[i].latitude,data[i].longitude]);
           }            
         }
