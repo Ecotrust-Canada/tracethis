@@ -8,8 +8,6 @@ html
     link(rel='stylesheet', href='/stylesheets/default.css')
     link(rel='stylesheet', href='/stylesheets/set2.css')
     link(rel='stylesheet', href='/stylesheets/component.css')
-    script(src="/javascripts/leaflet.js")
-    link(rel='stylesheet', href='/stylesheets/leaflet.css')
   body(ng-app="traceApp", ng-controller="traceCtrl")
     .content
       .container
@@ -28,8 +26,6 @@ html
           | Don't have a code? 
           a(href="#" + Math.floor(Math.random()*100000)) generate one.
 
-        #map
-
 
       .main
         ul.cbp_tmtimeline
@@ -42,7 +38,6 @@ html
               h3 {{result.activity}}
               p {{result.description}}
 
-
           li.new-entry
             time.cbp_tmtime(datetime='2013-04-10 18:30')
 
@@ -50,8 +45,7 @@ html
             .cbp_tmlabel
               p Join the value chain! Enter your product data here.
 
-              input#latitude(ng-model='latitude', type='hidden')
-              input#longitude(ng-model='longitude', type='hidden')
+              input(type="file", name="file", onchange="angular.element(this).scope().uploadFile(this.files)")
 
               span.input.input--yoshiko
                 input.input__field.input__field--yoshiko.input--filled(type='text', ng-model='activity')
@@ -74,7 +68,6 @@ html
   script(src="bower_components/angular-qrcode/qrcode.js")
   script(src="javascripts/classie.js")
   script(src="javascripts/client.js")
-  script(src="javascripts/tracemap.js")
 
 
 

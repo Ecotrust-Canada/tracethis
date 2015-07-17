@@ -14,18 +14,15 @@ router.get('/:code', function(req, res, next) {
 });
 
 
+
 router.post('/:code', function(req, res, next) {
 
-  console.log(req.files);
-  res.end("File uploaded.");
 
   db.traces.save({
     code: req.params.code,
     date: new Date(),
     activity: req.body.activity,
-    description: req.body.description,
-    latitude: req.body.latitude,
-    longitude: req.body.longitude,
+    description: req.body.description
   });
 
   res.send({

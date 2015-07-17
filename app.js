@@ -36,6 +36,14 @@ onFileUploadComplete: function (file) {
 }
 }));
 
+
+app.post('/api/photo',function(req,res){
+  if(done==true){
+    console.log(req.files);
+    res.end("File uploaded.");
+  }
+});
+
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.use('/', routes);
@@ -75,5 +83,5 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3000);
-console.log('Server running on port 3000');
+app.listen(3001);
+
