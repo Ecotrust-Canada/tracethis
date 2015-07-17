@@ -24,7 +24,9 @@ router.post('/:code', function(req, res, next) {
     code: req.params.code,
     date: new Date(),
     activity: req.body.activity,
-    description: req.body.description
+    description: req.body.description,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
   });
 
   res.send({
