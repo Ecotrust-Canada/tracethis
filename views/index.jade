@@ -35,8 +35,8 @@ html
         ul.cbp_tmtimeline
           li(ng-repeat="result in results track by $index")
             time.cbp_tmtime(datetime='2013-04-10 18:30')
-              span {{result.date.getFullYear()}}-{{result.date.getMonth()}}-{{result.date.getDate()}}
-              span {{result.date.getHours()}}:{{result.date.getMinutes()}}
+              span {{result.date | date:'shortDate'}}
+              span {{result.date | date:'HH:mm'}}
             .cbp_tmicon.cbp_tmicon-phone
             .cbp_tmlabel
               h3 {{result.activity}}
