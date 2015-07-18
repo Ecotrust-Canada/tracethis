@@ -199,7 +199,7 @@ app.controller('traceCtrl', ['$scope', '$http', function($scope, $http) {
             var c = p.coords; 
             console.log(c);
             L.circleMarker([c.latitude, c.longitude]).addTo(map);
-            map.setView([c.latitude, c.longitude], 14);
+            map.setView([c.latitude, c.longitude], 16);
             $scope.latitude = c.latitude;
             $scope.longitude = c.longitude;
 

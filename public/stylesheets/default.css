@@ -98,6 +98,14 @@ a:hover {
 	background: #47a3da;
 }
 
+.container > p {
+	font-size:30px;
+}
+
+.container > h1 {
+	font-size:70px;
+}
+
 .icon-drop:before, 
 .icon-arrow-left:before {
 	font-family: 'fontawesome';
