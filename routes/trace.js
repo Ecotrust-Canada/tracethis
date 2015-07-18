@@ -22,7 +22,9 @@ router.post('/:code', function(req, res, next) {
     date: new Date(),
     activity: req.body.activity,
     description: req.body.description,
-    filename: req.body.filename
+    filename: req.body.filename,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
   };
   console.log(trace);
   db.traces.save(trace);

@@ -8,6 +8,7 @@ html
     link(rel='stylesheet', href='/stylesheets/default.css')
     link(rel='stylesheet', href='/stylesheets/set2.css')
     link(rel='stylesheet', href='/stylesheets/component.css')
+    meta(name="viewport", content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scaleable=no")
 
     script(src="/javascripts/leaflet.js")
     link(rel='stylesheet', href='/stylesheets/leaflet.css')
@@ -52,7 +53,7 @@ html
             .cbp_tmlabel
               p Join the value chain! Enter your product data here.
 
-              input(type="file", name="file", onchange="angular.element(this).scope().uploadFile(this.files)")
+              input(type="file", name="file", onchange="angular.element(this).scope().uploadFile(this.files)", accept="image/*", capture=true)
 
               span.input.input--yoshiko
                 input.input__field.input__field--yoshiko.input--filled(type='text', ng-model='activity')

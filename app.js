@@ -83,5 +83,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3000);
-
+var config = require('./config');
+app.listen(config.port);
+console.log('running on', config.port)
