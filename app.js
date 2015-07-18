@@ -21,7 +21,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+var multer = require('multer');
+app.use(multer({ dest: './uploads/',
+ rename: function (fieldname, filename) {
+    return filename+Date.now();
+  },
+  onFileUploadStart: function (file) {
+    console.log(file.originalname + ' is starting ...')
+  },
+  onFileUploadComplete: function (file) {
+    console.log(file.fieldname + ' uploaded to  ' + file.path)
+    done=true;
+  }
+}));
+
+app.use('/uploads',  express.static(__dirname + '/uploads'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+
+app.post('/api/photo',function(req,res){
+  if(done==true){
+    console.log(req.files);
+    res.end(req.files.file.path);
+  }
+});
 
 app.use('/', routes);
 app.use('/trace', trace);
@@ -60,5 +83,5 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3000);
-console.log('Server running on port 3000');
+app.listen(3001);
+
