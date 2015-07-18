@@ -12,7 +12,7 @@ html
     script(src="/javascripts/leaflet.js")
     link(rel='stylesheet', href='/stylesheets/leaflet.css')
     script(src='http://jawj.github.io/OverlappingMarkerSpiderfier-Leaflet/bin/oms.min.js')
-    
+
   body(ng-app="traceApp", ng-controller="traceCtrl")
     .content
       .container
@@ -31,6 +31,7 @@ html
           | Don't have a code? 
           a(href="#" + Math.floor(Math.random()*100000)) generate one.
 
+        #map
 
       .main
         ul.cbp_tmtimeline
@@ -42,6 +43,7 @@ html
             .cbp_tmlabel
               h3 {{result.activity}}
               p {{result.description}}
+              img(ng-src="{{ result.filename }}")
 
           li.new-entry
             time.cbp_tmtime(datetime='2013-04-10 18:30')
@@ -70,9 +72,10 @@ html
     JSON.useDateParser();
   script(src="javascripts/angular.min.js")
   script(src="bower_components/qrcode-generator/js/qrcode.js")
-  script(src="bower_components/angular-qrcode/qrcode.js")
+  script(src="bower_components/angular-qrcode/angular-qrcode.js")
   script(src="javascripts/classie.js")
   script(src="javascripts/client.js")
+  script(src="javascripts/tracemap.js")
 
 
 

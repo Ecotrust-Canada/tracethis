@@ -209,7 +209,23 @@ app.controller('traceCtrl', ['$scope', '$http', function($scope, $http) {
       $scope.code = hash_code;
     }
 
+    $scope.uploadFile = function(files) {
+        var fd = new FormData();
+        //Take the first selected file
+        fd.append("file", files[0]);
 
+        $http.post("/api/photo", fd, {
+            withCredentials: true,
+            headers: {'Content-Type': undefined },
+            transformRequest: angular.identity
+        }).success( function(info){
+          console.log('success', info)
+          $scope.filename = info;
+        }).error( function(){
+          console.log('success', arguments)
+        } );
+
+    };
 
     $http.get('/trace/' + $scope.code).
       success(function(data, status, headers, config) {
@@ -225,13 +241,14 @@ app.controller('traceCtrl', ['$scope', '$http', function($scope, $http) {
     setTimeout( init_input_behaviour, 100);
 
     $scope.save = function(){
-      console.log($scope.latitude);
+      console.log($scope.filename, 'is the filename');
       var result = {
         description: $scope.description,
         activity: $scope.activity,
         latitude: parseFloat($scope.latitude),
         longitude: parseFloat($scope.longitude),
-        date: new Date()
+        date: new Date(),
+        filename: $scope.filename
       };
       $scope.results.push(result);
       

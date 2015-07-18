@@ -17,13 +17,15 @@ router.get('/:code', function(req, res, next) {
 
 router.post('/:code', function(req, res, next) {
 
-
-  db.traces.save({
+  trace = {
     code: req.params.code,
     date: new Date(),
     activity: req.body.activity,
-    description: req.body.description
-  });
+    description: req.body.description,
+    filename: req.body.filename
+  };
+  console.log(trace);
+  db.traces.save(trace);
 
   res.send({
     success: true

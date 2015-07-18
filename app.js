@@ -27,24 +27,24 @@ app.use(multer({ dest: './uploads/',
  rename: function (fieldname, filename) {
     return filename+Date.now();
   },
-onFileUploadStart: function (file) {
-  console.log(file.originalname + ' is starting ...')
-},
-onFileUploadComplete: function (file) {
-  console.log(file.fieldname + ' uploaded to  ' + file.path)
-  done=true;
-}
+  onFileUploadStart: function (file) {
+    console.log(file.originalname + ' is starting ...')
+  },
+  onFileUploadComplete: function (file) {
+    console.log(file.fieldname + ' uploaded to  ' + file.path)
+    done=true;
+  }
 }));
 
+app.use('/uploads',  express.static(__dirname + '/uploads'));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.post('/api/photo',function(req,res){
   if(done==true){
     console.log(req.files);
-    res.end("File uploaded.");
+    res.end(req.files.file.path);
   }
 });
-
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.use('/', routes);
 app.use('/trace', trace);
