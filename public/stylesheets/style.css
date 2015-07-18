@@ -5,3 +5,12 @@
  	margin-top: 10px;
  	margin-bottom: 10px;
  }
+
+.cbp_tmlabel img {
+  display: block;
+  width: 100%;
+}
+
+qrcode {
+  margin-left: 10em;
+}

@@ -241,7 +241,7 @@ app.controller('traceCtrl', ['$scope', '$http', function($scope, $http) {
     setTimeout( init_input_behaviour, 100);
 
     $scope.save = function(){
-      console.log($scope.filename, 'is the filename');
+      console.log($scope.latitude, 'is the filename');
       var result = {
         description: $scope.description,
         activity: $scope.activity,
