@@ -15,7 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular-qrcode": "~6.0.3",
     "json.date-extensions": "~1.2.2",
     "qrcode": "~1.0.2"
   }

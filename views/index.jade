@@ -21,7 +21,7 @@ html
         p A traceability evalation and prototyping tool. Enter the code attached to your product:
 
         span.input.input--yoshiko
-          input#code.input__field.input__field--yoshiko.input--filled(type='text', ng-model='code')
+          input#code.input__field.input__field--yoshiko.input--filled(type='text', ng-model='code' ng-change="update()")
           label.input__label.input__label--yoshiko(for='input-10')
             span.input__label-content.input__label-content--yoshiko(data-content="TRACE CODE") TRACE CODE
         |  
@@ -72,7 +72,6 @@ html
     JSON.useDateParser();
   script(src="javascripts/angular.min.js")
   script(src="bower_components/qrcode-generator/js/qrcode.js")
-  script(src="bower_components/angular-qrcode/angular-qrcode.js")
   script(src="javascripts/classie.js")
   script(src="javascripts/client.js")
   script(src="javascripts/tracemap.js")

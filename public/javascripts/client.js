@@ -258,6 +258,21 @@ app.controller('traceCtrl', ['$scope', '$http', function($scope, $http) {
         });
     };
 
+    $scope.update = function() {
+      console.log($scope.code);
+      if ($scope.code !== "") {
+        $http.get('/trace/' + $scope.code).
+          success(function(data, status, headers, config) {
+            $scope.results = data;
+            window.results = data;
+            render(data);
+            window.history.pushState("object or string", "Title", "/#" + $scope.code);
+        }).error(function(data, status, headers, config) {});
+      }
+      else {
+        window.history.pushState("object or string", "Title", "/");
+      }
+    };
     window.addEventListener("hashchange", function(){
       window.location.reload();
 
